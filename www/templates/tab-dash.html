@@ -1,17 +1,64 @@
-<ion-view view-title="Dashboard">
+<ion-view view-title="Churrasculadora">
   <ion-content class="padding">
-    <h2>Welcome to Ionic</h2>
-    <p>
-    This is the Ionic starter for tabs-based apps. For other starters and ready-made templates, check out the <a href="http://market.ionic.io/starters" target="_blank">Ionic Market</a>.
-    </p>
-    <p>
-      To edit the content of each tab, edit the corresponding template file in <code>www/templates/</code>. This template is <code>www/templates/tab-dash.html</code>
-    </p>
-    <p>
-    If you need help with your app, join the Ionic Community on the <a href="http://forum.ionicframework.com" target="_blank">Ionic Forum</a>. Make sure to <a href="http://twitter.com/ionicframework" target="_blank">follow us</a> on Twitter to get important updates and announcements for Ionic developers.
-    </p>
-    <p>
-      For help sending push notifications, join the <a href="https://apps.ionic.io/signup" target="_blank">Ionic Platform</a> and check out <a href="http://docs.ionic.io/docs/push-overview" target="_blank">Ionic Push</a>. We also have other services available.
-    </p>
+   
+    <div class="row">
+      <div class="col card">
+        <i class="icon ion-man dark iconPersons"></i>Homens
+        <label class="item item-input">
+          <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
+          <input type="text" placeholder="Quantidade">
+        </label>
+      </div>
+      
+      <div class="col card">
+        <i class="icon ion-woman royal iconPersons"></i>Mulheres
+        <label class="item item-input">
+          <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
+          <input type="text" placeholder="Quantidade">
+        </label>      
+      </div>
+      
+      <div class="col card">
+        <i class="icon ion-ios-body iconPersonsChild royal iconPersons"></i>Crianças
+        <label class="item item-input">
+          <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
+          <input type="text" placeholder="Quantidade">
+        </label>      
+      </div>
+    </div>
+
+    <ion-list clas="products meats">
+      <div class="item item-divider">Carnes</div>
+      <ion-checkbox ng-model="filter.carne">Carne</ion-checkbox>
+      <ion-checkbox ng-model="filter.carne2">Carne</ion-checkbox>
+      <ion-checkbox ng-model="filter.carne3">Carne</ion-checkbox>
+      <ion-checkbox ng-model="filter.carne4">Carne</ion-checkbox>
+      <ion-checkbox ng-model="filter.carne5">Carne</ion-checkbox>
+      <ion-checkbox ng-model="filter.carne6">Carne</ion-checkbox>
+      <ion-checkbox ng-model="filter.carne7">Carne</ion-checkbox>
+      <ion-checkbox ng-model="filter.carne8">Carne</ion-checkbox>
+      <ion-checkbox ng-model="filter.carne9">Carne</ion-checkbox>
+    </ion-list>
+
+    <ion-list clas="products drinks">
+      <div class="item item-divider">Bebidas</div>
+      <ion-checkbox ng-model="filter.bebida">Bebida</ion-checkbox>
+      <ion-checkbox ng-model="filter.bebida1">Bebida</ion-checkbox>
+      <ion-checkbox ng-model="filter.bebida2">Bebida</ion-checkbox>
+      <ion-checkbox ng-model="filter.bebida3">Bebida</ion-checkbox>
+    </ion-list>
+
+    <ion-list clas="products others">
+      <div class="item item-divider">Outros</div>
+      <ion-checkbox ng-model="filter.outros">Outros</ion-checkbox>
+      <ion-checkbox ng-model="filter.outros1">Outros</ion-checkbox>
+      <ion-checkbox ng-model="filter.outros2">Outros</ion-checkbox>
+      <ion-checkbox ng-model="filter.outros3">Outros</ion-checkbox>
+    </ion-list>
+
+    <button class="button button-block button-positive">
+     Calcular Churrasco!
+    </button>
+
   </ion-content>
 </ion-view>
