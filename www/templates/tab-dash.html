@@ -1,62 +1,61 @@
-<ion-view view-title="Churrasculadora">
-  <ion-content class="padding">
+<ion-view view-title="Churrasculadora" cache-view="false">
+  <ion-content class="padding" ng-controller="mainController">
    
     <div class="row">
-      <div class="col card">
-        <i class="icon ion-man dark iconPersons"></i>Homens
+      <div class="col card" align="center">
+        <i class="icon ion-man dark iconPersons"></i><br />Homens
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
-          <input type="text" placeholder="Quantidade">
+          <input type="text" placeholder="Quantidade" value='{{ manQuantity }}'>
         </label>
       </div>
       
-      <div class="col card">
-        <i class="icon ion-woman royal iconPersons"></i>Mulheres
+      <div class="col card" align="center">
+        <i class="icon ion-woman dark iconPersons"></i><br />Mulheres
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
-          <input type="text" placeholder="Quantidade">
+          <input type="text" placeholder="Quantidade" value='{{ womanQuantity }}'>
         </label>      
       </div>
       
-      <div class="col card">
-        <i class="icon ion-ios-body iconPersonsChild royal iconPersons"></i>Crianças
+      <div class="col card" align="center">
+        <i class="icon ion-ios-body iconPersonsChild dark iconPersons"></i><br />Crianças
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
-          <input type="text" placeholder="Quantidade">
+          <input type="text" placeholder="Quantidade" value='{{ childQuantity }}'>
         </label>      
       </div>
     </div>
 
-    <ion-list clas="products meats">
-      <div class="item item-divider">Carnes</div>
-      <ion-checkbox ng-model="filter.carne">Carne</ion-checkbox>
-      <ion-checkbox ng-model="filter.carne2">Carne</ion-checkbox>
-      <ion-checkbox ng-model="filter.carne3">Carne</ion-checkbox>
-      <ion-checkbox ng-model="filter.carne4">Carne</ion-checkbox>
-      <ion-checkbox ng-model="filter.carne5">Carne</ion-checkbox>
-      <ion-checkbox ng-model="filter.carne6">Carne</ion-checkbox>
-      <ion-checkbox ng-model="filter.carne7">Carne</ion-checkbox>
-      <ion-checkbox ng-model="filter.carne8">Carne</ion-checkbox>
-      <ion-checkbox ng-model="filter.carne9">Carne</ion-checkbox>
-    </ion-list>
-
-    <ion-list clas="products drinks">
-      <div class="item item-divider">Bebidas</div>
-      <ion-checkbox ng-model="filter.bebida">Bebida</ion-checkbox>
-      <ion-checkbox ng-model="filter.bebida1">Bebida</ion-checkbox>
-      <ion-checkbox ng-model="filter.bebida2">Bebida</ion-checkbox>
-      <ion-checkbox ng-model="filter.bebida3">Bebida</ion-checkbox>
-    </ion-list>
-
-    <ion-list clas="products others">
-      <div class="item item-divider">Outros</div>
-      <ion-checkbox ng-model="filter.outros">Outros</ion-checkbox>
-      <ion-checkbox ng-model="filter.outros1">Outros</ion-checkbox>
-      <ion-checkbox ng-model="filter.outros2">Outros</ion-checkbox>
-      <ion-checkbox ng-model="filter.outros3">Outros</ion-checkbox>
-    </ion-list>
-
-    <button class="button button-block button-positive">
+    
+    <!--
+    <a nav-transition="none" href="#/meats">
+      <button class="button button-positive">
+        Carnes
+      </button>
+    </a> <br /><br />
+    
+    <a nav-transition="android" href="#/meats">
+      <button class="button button-positive">
+        Carnes
+      </button>
+    </a> <br /><br />        
+    -->
+    <button class="button button-positive button-block" ng-click="changePageMeats()">
+      Escolher Carnes
+    </button>
+    <ng-repeat
+    <p> {{ meatList }} </p>
+    <button class="button button-positive button-block" ng-click="changePageDrinks()">
+      Escolher Bebidas
+    </button>
+    {{ drinkList }}
+    <button class="button button-positive button-block" ng-click="changePageOthers()">
+      Outros
+    </button> 
+    {{ otherList }}
+    <br />
+    <button class="button button-block button-assertive">
      Calcular Churrasco!
     </button>
 

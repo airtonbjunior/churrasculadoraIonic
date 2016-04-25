@@ -1,0 +1,14 @@
+<ion-view view-title="Bebidas">
+ 	<ion-content class="padding" ng-controller="mainController">
+ 		<button class="button icon ion-ios-arrow-back" ng-click="goBack()" nav-direction="back">OK!</button>
+		<ion-list clas="products drinks">
+	      <div class="item item-divider" align="center">Bebidas</div>
+	      <ion-checkbox ng-model="filter.refrigerante">Refrigerante <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
+	      <ion-checkbox ng-model="filter.cerveja">Cerveja <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
+	      <ion-checkbox ng-model="filter.cachaca">Cachaça <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
+	      <ion-checkbox ng-model="filter.suco">Suco <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
+	      <ion-checkbox ng-model="filter.agua">Água <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
+	    </ion-list>
+	    <button class="button button-block button-assertive" ng-click="goBack()" nav-direction="back">OK</button>
+	</ion-content>
+</ion-view>

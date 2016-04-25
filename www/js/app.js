@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -32,7 +32,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('meats', {
+    url: '/meats',
+    templateUrl: 'templates/meats.html'
+  })
+
+  .state('drinks', {
+    url: '/meats',
+    templateUrl: 'templates/drinks.html'
+  })
+
+  .state('others', {
+    url: '/meats',
+    templateUrl: 'templates/others.html'
+  })
+
+
+  /* Default template Ionic*/
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -81,5 +98,93 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
+
+});
+
+
+/* Main Controller to the Home Page*/
+app.controller('mainController', function($scope, $state, $stateParams, $ionicHistory, $ionicViewSwitcher, $window) {
+
+  //$scope.womanQuantity = 10;
+
+  $scope.checkCostela = true;  // É ASSIM QUE FAZ PRA SETAR ESSE CHECKBOX!!!!!!!!!!!!!!!!!!!!
+  console.log($scope);
+
+
+  for (item in $window.localStorage) {
+    $scope.meatList += " " + item;
+  }
+
+  
+  var getCheckBoxCode = function (checkBoxName) {
+
+    //alert("entrei com " + checkBoxName);
+
+    var checkBoxNames = ["Contra-filé", "Coxa de Frango", "Asa de Frango", "Alcatra", "Maminha", "Costela", "Cupim", "Linguiça", "Coração"];
+    var checkBoxCodes = ["contraFile", "coxaFrango", "asaFrango", "alcatra", "maminha", "costela", "cupim", "linguica", "coracao"];
+
+    //alert(checkBoxNames.indexOf("Maminha"));
+
+
+    return checkBoxCodes[ checkBoxNames.indexOf(checkBoxName.trim()) ];
+
+  };
+
+  $scope.trueOrFalse = function (checkBox) {
+
+    //alert("entrei no true or false com " + checkBox);
+    
+    
+    for (item in $window.localStorage) {
+
+      //alert(item + " " + check);
+
+      if(item == checkBox) { 
+          var check = getCheckBoxCode(checkBox);
+          
+          //alert("vou retornar " + $window.localStorage[item]);
+          
+
+          ret = "filter." + check + "=" + $window.localStorage[item];
+
+
+
+          //alert("vou retornar " + ret);
+          return ret;
+        }
+    }
+    return false; // If doesn't find
+  }
+
+
+  $scope.doIfChecked = function (checkValue, checkName) {
+    
+    $window.localStorage[checkName] = checkValue; // Save the meats in localValue. I think that this is not the right way to do that, but it works now.
+
+    //console.log($window.localStorage)
+  };
+
+  $scope.changePageMeats = function() {
+    $ionicViewSwitcher.nextDirection('forward'); // Animation
+    $state.go('meats');
+  };  
+
+  $scope.changePageDrinks = function() {
+    $ionicViewSwitcher.nextDirection('forward'); // Animation
+    $state.go('drinks');
+  };  
+
+  $scope.changePageOthers = function() {
+    $ionicViewSwitcher.nextDirection('forward'); // Animation
+    $state.go('others');
+  };  
+
+
+
+  $scope.goBack = function () {
+    //$ionicHistory.goBack(); // This doesn't work for me! Fix this!
+    window.history.back();
+
+  };
 
 });

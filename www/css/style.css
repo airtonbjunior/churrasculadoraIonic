@@ -6,3 +6,11 @@
 .iconPersonsChild {
 	font-size: 100px;
 }
+
+.item-checkbox-img {
+  vertical-align: middle;
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  height: 100%;
+}
