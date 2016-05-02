@@ -3,28 +3,8 @@
  		<button class="button icon ion-ios-arrow-back" ng-click="goBack()" nav-direction="back">OK!</button>
 	 	<ion-list clas="products meats">
 	      <div class="item item-divider">Carnes</div>
-	      <ion-checkbox ng-model="contraFile" ng-change='doIfChecked(filter.contraFile, "Contra-filé")' ng-init="filter.contraFile=true">Contra-filé <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
-	      <ion-checkbox ng-model="filter.coxaFrango" ng-change='doIfChecked(filter.coxaFrango, "Coxa de Frango")' ng-init="trueOrFalse('Coxa de Frango')">Coxa de Frango <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
-	      <ion-checkbox ng-model="filter.asaFrango"  ng-change='doIfChecked(filter.asaFrango, "Asa de Frango")' ng-init="trueOrFalse('Asa de Frango')">Asa de Frango <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
-	      <ion-checkbox ng-model="filter.alcatra"    ng-change='doIfChecked(filter.alcatra, "Alcatra")' ng-init="trueOrFalse('Alcatra')">Alcatra <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
-	      <ion-checkbox ng-model="filter.maminha"    ng-change='doIfChecked(filter.maminha, "Maminha")' ng-init="filter.maminha=checkMaminha">Maminha <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
-	      <ion-checkbox ng-model="filter.costela"    ng-change='doIfChecked(filter.costela, "Costela")' ng-init='filter.costela=checkCostela'>Costela {{ checkCostela }}<img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
-	      <ion-checkbox ng-model="filter.cupim"      ng-change='doIfChecked(filter.cupim, "Cupim")' ng-init="trueOrFalse('Cupim')">Cupim <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
-	      <ion-checkbox ng-model="filter.linguica"   ng-change='doIfChecked(filter.linguica, "Linguiça")' ng-init="trueOrFalse('Linguiça')">Linguiça <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
-	      <ion-checkbox ng-model="filter.coracao"    ng-change='doIfChecked(filter.coracao, "Coração")' ng-init="trueOrFalse('Coração')">Coração <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
+	      <ion-checkbox ng-repeat="meat in meats track by $index" ng-model="filter.refrigerante"> {{ meat.name }} <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
 	    </ion-list>
 	    <button class="button button-block button-assertive" ng-click="goBack()" nav-direction="back">OK</button>
 	</ion-content>
 </ion-view>
-
-
-<!-- 
-	Anotações sobre o desenvolvimento:
-
-	O checkbox da costela é o único que está funcionando no momento.
-
-	Setei o checkCostela e atribuí true pra ele no controller. Fazer a lógica pra essa coisa ficar automatizada.
-
-	Falta muita coisa ainda, mas já dá pra ir fazendo! Hahahaha
-
--->

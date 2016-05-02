@@ -38,7 +38,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
   })
 
   .state('drinks', {
-    url: '/meats',
+    url: '/drinks',
     templateUrl: 'templates/drinks.html'
   })
 
@@ -105,10 +105,98 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
 /* Main Controller to the Home Page*/
 app.controller('mainController', function($scope, $state, $stateParams, $ionicHistory, $ionicViewSwitcher, $window) {
 
-  //$scope.womanQuantity = 10;
+  /* I'm doing this hardcoded now. Improve this! */
+  /* I was with a lot of dificulties in handle checkboxes */
+  /* I find a nice example here: http://codepen.io/DeutschMark/pen/oXNBYQ */
+  /* I'm following this example and it works fine! */
+  $scope.meats = [{
+        name: "Contra Filé",
+        id: 1
+    }, {
+        name: "Coxa de Frango",
+        id: 2
+    }, {
+        name: "Asa de Frango",
+        id: 3
+    }, {
+        name: "Alcatra",
+        id: 4
+    }, {
+        name: "Maminha",
+        id: 5
+    }, {
+        name: "Costela",
+        id: 6
+    }, {
+        name: "Cupim",
+        id: 7
+    }, {
+        name: "Linguiça",
+        id: 8
+    }, {
+        name: "Coração",
+        id: 9
+    }, ];
 
-  $scope.checkCostela = true;  // É ASSIM QUE FAZ PRA SETAR ESSE CHECKBOX!!!!!!!!!!!!!!!!!!!!
-  console.log($scope);
+
+  $scope.drinks = [{
+        name: "Refrigerante",
+        id: 1
+    }, {
+        name: "Cerveja",
+        id: 2
+    }, {
+        name: "Cachaça",
+        id: 3
+    }, {
+        name: "Suco",
+        id: 4
+    }, {
+        name: "Água",
+        id: 5
+    }, ];
+
+
+
+    $scope.others = [{
+        name: "Other 1",
+        id: 1
+    }, {
+        name: "Other 2",
+        id: 2
+    }, {
+        name: "Other 3",
+        id: 3
+    }, {
+        name: "Other 4",
+        id: 4
+    }, {
+        name: "Other 5",
+        id: 5
+    }, ];
+
+
+  $scope.updateThemaLocalStorage = function($index) {
+
+        console.log("klicked index: " + $index);
+        console.log($scope.drinks[$index].name);
+        console.log("current state: " + $scope.drinks[$index].checked);
+
+        // Actually doing the localStorage: set item to true/false
+        console.log("recent saved state: " + $window.localStorage[$index]);
+
+
+
+    $window.localStorage.setItem($index, $scope.drinks[$index].checked);
+
+  };
+
+
+    $scope.getCheck = function(item) {
+        // get the stored toggle (true or false) and
+        // pass it over to the ng-checked in the html
+        return $window.localStorage[item];
+    };
 
 
   for (item in $window.localStorage) {
@@ -160,8 +248,6 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
   $scope.doIfChecked = function (checkValue, checkName) {
     
     $window.localStorage[checkName] = checkValue; // Save the meats in localValue. I think that this is not the right way to do that, but it works now.
-
-    //console.log($window.localStorage)
   };
 
   $scope.changePageMeats = function() {
