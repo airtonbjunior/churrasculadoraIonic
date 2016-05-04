@@ -139,6 +139,9 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
     }, ];
 
 
+  /* I messed the ids to see if the checkbox will continue work well */
+  /* Seems like the id field doesn't make difference in this case */
+  /* I'm considering use another field more significantly here */
   $scope.drinks = [{
         name: "Refrigerante",
         id: 1
@@ -176,74 +179,50 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
     }, ];
 
 
-  $scope.updateThemaLocalStorage = function($index) {
-
-        console.log("klicked index: " + $index);
-        console.log($scope.drinks[$index].name);
-        console.log("current state: " + $scope.drinks[$index].checked);
-
-        // Actually doing the localStorage: set item to true/false
-        console.log("recent saved state: " + $window.localStorage[$index]);
 
 
+  $scope.updateDrinksLocalStorage = function($index) {
 
-    $window.localStorage.setItem($index, $scope.drinks[$index].checked);
+    $window.localStorage.setItem($index + "d", $scope.drinks[$index].checked);
+  };
 
+  $scope.updateMeatsLocalStorage = function($index) {
+
+    $window.localStorage.setItem($index + "m", $scope.meats[$index].checked);
+  };
+
+  $scope.updateOthersLocalStorage = function($index) {
+
+    $window.localStorage.setItem($index + "o", $scope.others[$index].checked);
   };
 
 
-    $scope.getCheck = function(item) {
-        // get the stored toggle (true or false) and
-        // pass it over to the ng-checked in the html
-        return $window.localStorage[item];
-    };
+  $scope.getCheckDrinks = function(item) {
+    // get the stored toggle (true or false) and
+    // pass it over to the ng-checked in the html
+    return $window.localStorage[item+"d"];
+  };
 
+  $scope.getCheckMeats = function(item) {
+    // get the stored toggle (true or false) and
+    // pass it over to the ng-checked in the html
+    return $window.localStorage[item+"m"];
+  };
 
-  for (item in $window.localStorage) {
-    $scope.meatList += " " + item;
-  }
+  $scope.getCheckOthers = function(item) {
+    // get the stored toggle (true or false) and
+    // pass it over to the ng-checked in the html
+    return $window.localStorage[item+"o"];
+  };
+
 
   
-  var getCheckBoxCode = function (checkBoxName) {
+  for (item in $window.localStorage) {
 
-    //alert("entrei com " + checkBoxName);
-
-    var checkBoxNames = ["Contra-filé", "Coxa de Frango", "Asa de Frango", "Alcatra", "Maminha", "Costela", "Cupim", "Linguiça", "Coração"];
-    var checkBoxCodes = ["contraFile", "coxaFrango", "asaFrango", "alcatra", "maminha", "costela", "cupim", "linguica", "coracao"];
-
-    //alert(checkBoxNames.indexOf("Maminha"));
-
-
-    return checkBoxCodes[ checkBoxNames.indexOf(checkBoxName.trim()) ];
-
-  };
-
-  $scope.trueOrFalse = function (checkBox) {
-
-    //alert("entrei no true or false com " + checkBox);
-    
-    
-    for (item in $window.localStorage) {
-
-      //alert(item + " " + check);
-
-      if(item == checkBox) { 
-          var check = getCheckBoxCode(checkBox);
-          
-          //alert("vou retornar " + $window.localStorage[item]);
-          
-
-          ret = "filter." + check + "=" + $window.localStorage[item];
-
-
-
-          //alert("vou retornar " + ret);
-          return ret;
-        }
-    }
-    return false; // If doesn't find
+      //if ($window.localStorage[item] == 'true') { $scope.meatList  += " " + $scope.meats[item].name; }
+      //if ($window.localStorage[item] == 'true') { $scope.drinkList += " " + $scope.drinks[item].name; }
+      //if ($window.localStorage[item] == 'true') { $scope.otherList += " " + $scope.others[item].name; }
   }
-
 
   $scope.doIfChecked = function (checkValue, checkName) {
     
