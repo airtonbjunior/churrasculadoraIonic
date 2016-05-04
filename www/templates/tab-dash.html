@@ -6,7 +6,7 @@
         <i class="icon ion-man dark iconPersons"></i><br />Homens
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
-          <input type="text" placeholder="Quantidade" value='{{ manQuantity }}'>
+          <input type="text" placeholder="Quantidade" value='{{ manQuantity }}' ng-model="manQuantity">
         </label>
       </div>
       
@@ -14,7 +14,7 @@
         <i class="icon ion-woman dark iconPersons"></i><br />Mulheres
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
-          <input type="text" placeholder="Quantidade" value='{{ womanQuantity }}'>
+          <input type="text" placeholder="Quantidade" value='{{ womanQuantity }}' ng-model="womanQuantity">
         </label>      
       </div>
       
@@ -22,7 +22,7 @@
         <i class="icon ion-ios-body iconPersonsChild dark iconPersons"></i><br />Crianças
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
-          <input type="text" placeholder="Quantidade" value='{{ childQuantity }}'>
+          <input type="text" placeholder="Quantidade" value='{{ childQuantity }}' ng-model="childQuantity">
         </label>      
       </div>
     </div>
@@ -54,7 +54,7 @@
     </button> 
     <p> {{ otherList }} </p>
     <br />
-    <button class="button button-block button-assertive">
+    <button class="button button-block button-assertive" ng-click="calcBarbecue()">
      Calcular Churrasco!
     </button>
 

@@ -105,6 +105,10 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
 /* Main Controller to the Home Page*/
 app.controller('mainController', function($scope, $state, $stateParams, $ionicHistory, $ionicViewSwitcher, $window) {
 
+  
+  $scope.meatList = $scope.drinkList = $scope.otherList = "";
+  $scope.manQuantity = $scope.womanQuantity = $scope.childQuantity = 0; 
+
   /* I'm doing this hardcoded now. Improve this! */
   /* I was with a lot of dificulties in handle checkboxes */
   /* I find a nice example here: http://codepen.io/DeutschMark/pen/oXNBYQ */
@@ -216,13 +220,49 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
   };
 
 
-  
-  for (item in $window.localStorage) {
 
-      //if ($window.localStorage[item] == 'true') { $scope.meatList  += " " + $scope.meats[item].name; }
-      //if ($window.localStorage[item] == 'true') { $scope.drinkList += " " + $scope.drinks[item].name; }
-      //if ($window.localStorage[item] == 'true') { $scope.otherList += " " + $scope.others[item].name; }
+  /* Main function */
+  $scope.calcBarbecue = function () {
+
+    /* Validate if the users put a number in the quantity field */
+    var reg = new RegExp(/^\d+$/);
+
+    if ( !reg.test($scope.manQuantity)  || !reg.test($scope.womanQuantity) || !reg.test($scope.childQuantity)) {
+        alert("só vale números, vivente!!!");
+        return;
+    }
+
+    var meatQuantityNeeded        = ($scope.manQuantity * 450) + ($scope.womanQuantity * 400) + ($scope.childQuantity * 200);
+    var drinkQuantityNeeded       = ($scope.manQuantity * 1500) + ($scope.womanQuantity * 1000) + ($scope.childQuantity * 500);
+    var garlicBreadQuantityNeeded = parseInt($scope.manQuantity) + parseInt($scope.womanQuantity) + parseInt($scope.childQuantity);
+
+
+    /* HERE, I NEED PUT THE CORE - SPLIT THE TOTAL TO THE MEATS, DRINKS AND OTHERS! */
+    /* SEARCH THE BETTER WAY TO DO THIS */
+    /* SEARCH ON THE INTERNET SOME ALGORITHM TO HELP THIS */
+
+
+
+    alert($scope.manQuantity + " | " + $scope.womanQuantity + " | " + $scope.childQuantity + " - " + meatQuantityNeeded + "g carne | " + drinkQuantityNeeded + "ml bebida | " + garlicBreadQuantityNeeded);
+  };
+
+  
+  /* Show the options that the user have choiced in the main screen */
+  for (item in $window.localStorage) {  
+    if( item.indexOf("m") != -1 && $window.localStorage[item] == 'true' ) { 
+      $scope.meatList += " " + $scope.meats[item[0]].name;
+    }
+
+    if( item.indexOf("d") != -1 && $window.localStorage[item] == 'true' ) { 
+      $scope.drinkList += " " + $scope.drinks[item[0]].name;
+    }
+
+    if( item.indexOf("o") != -1 && $window.localStorage[item] == 'true') { 
+      $scope.otherList += " " + $scope.others[item[0]].name;
+    }
   }
+
+
 
   $scope.doIfChecked = function (checkValue, checkName) {
     
