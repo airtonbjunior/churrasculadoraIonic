@@ -1,6 +1,6 @@
 <ion-view view-title="Outros">
  	<ion-content class="padding" ng-controller="mainController">
- 		<button class="button icon ion-ios-arrow-back" ng-click="goBack()" nav-direction="back">OK!</button>
+ 		<button class="button button-block button-assertive" ng-click="goBack()" nav-direction="back">OK</button>
 	    <ion-list clas="products others">
 	      <div class="item item-divider">Outros</div>
 	      <ion-checkbox ng-repeat="other in others track by $index" ng-model="other.checked" ng-checked="{{getCheckOthers($index)}}" ng-click="updateOthersLocalStorage($index)"> {{ other.name }} <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>

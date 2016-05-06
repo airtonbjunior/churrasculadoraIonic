@@ -6,7 +6,7 @@
         <i class="icon ion-man dark iconPersons"></i><br />Homens
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
-          <input type="text" placeholder="Quantidade" value='{{ manQuantity }}' ng-model="manQuantity">
+          <input type="text" placeholder="Quantidade" value='{{ manQuantity }}' ng-model="manQuantity" ng-blur="saveQuantity( manQuantity, 'man');">
         </label>
       </div>
       
@@ -14,7 +14,7 @@
         <i class="icon ion-woman dark iconPersons"></i><br />Mulheres
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
-          <input type="text" placeholder="Quantidade" value='{{ womanQuantity }}' ng-model="womanQuantity">
+          <input type="text" placeholder="Quantidade" value='{{ womanQuantity }}' ng-model="womanQuantity" ng-blur="saveQuantity( manQuantity, 'woman');">
         </label>      
       </div>
       
@@ -22,7 +22,7 @@
         <i class="icon ion-ios-body iconPersonsChild dark iconPersons"></i><br />Crianças
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
-          <input type="text" placeholder="Quantidade" value='{{ childQuantity }}' ng-model="childQuantity">
+          <input type="text" placeholder="Quantidade" value='{{ childQuantity }}' ng-model="childQuantity" ng-blur="saveQuantity( manQuantity, 'child');">
         </label>      
       </div>
     </div>
@@ -41,20 +41,20 @@
       </button>
     </a> <br /><br />        
     -->
-    <button class="button button-positive button-block" ng-click="changePageMeats()">
+    <button class="button button-positive button-block" ng-click="changePage('meats')">
       Escolher Carnes
     </button>
     <p> {{ meatList }} </p>
-    <button class="button button-positive button-block" ng-click="changePageDrinks()">
+    <button class="button button-positive button-block" ng-click="changePage('drinks')">
       Escolher Bebidas
     </button>
     <p> {{ drinkList }} </p>
-    <button class="button button-positive button-block" ng-click="changePageOthers()">
+    <button class="button button-positive button-block" ng-click="changePage('others')">
       Outros
     </button> 
     <p> {{ otherList }} </p>
     <br />
-    <button class="button button-block button-assertive" ng-click="calcBarbecue()">
+    <button class="button button-block button-assertive" ng-click="calcBarbecue(); modal.show();">
      Calcular Churrasco!
     </button>
 

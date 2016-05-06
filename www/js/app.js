@@ -103,11 +103,52 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
 
 
 /* Main Controller to the Home Page*/
-app.controller('mainController', function($scope, $state, $stateParams, $ionicHistory, $ionicViewSwitcher, $window) {
+app.controller('mainController', function($scope, $state, $stateParams, $ionicHistory, $ionicViewSwitcher, $ionicModal, $window) {
+
+
+  $ionicModal.fromTemplateUrl('templates/modal-answer.html', {
+    
+    scope: $scope,
+    animation: 'slide-in-up',
+    backdropClickToClose: false,    // Prevent the modal hiding (see http://stackoverflow.com/questions/31218684/how-to-prevent-ionic-modal-from-hidding)
+    hardwareBackButtonClose: false  // Prevent the modal hiding (see http://stackoverflow.com/questions/31218684/how-to-prevent-ionic-modal-from-hidding)
+  
+  }).then(function(modal) {
+  
+    $scope.modal = modal;
+  
+  });
+
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+
+  // Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
+
 
   
   $scope.meatList = $scope.drinkList = $scope.otherList = "";
-  $scope.manQuantity = $scope.womanQuantity = $scope.childQuantity = 0; 
+  //$scope.manQuantity = $scope.womanQuantity = $scope.childQuantity = 0; 
+  $scope.manQuantity   = $window.localStorage['man'];
+  $scope.womanQuantity = $window.localStorage['woman'];
+  $scope.childQuantity = $window.localStorage['child'];
 
   /* I'm doing this hardcoded now. Improve this! */
   /* I was with a lot of dificulties in handle checkboxes */
@@ -220,6 +261,16 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
   };
 
 
+  $scope.saveQuantity = function (quantity, who) {
+
+    if (quantity == "") { /* think what to do if the user erase the field. I think that is better fill with "0"*/ }
+
+    $window.localStorage.setItem(who, quantity);
+
+  }
+
+
+
 
   /* Main function */
   $scope.calcBarbecue = function () {
@@ -246,6 +297,13 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
     alert($scope.manQuantity + " | " + $scope.womanQuantity + " | " + $scope.childQuantity + " - " + meatQuantityNeeded + "g carne | " + drinkQuantityNeeded + "ml bebida | " + garlicBreadQuantityNeeded);
   };
 
+
+  /* Save the barbecue in the localStorage */
+  $scope.saveBarbecue = function () {
+    alert("vou salvar!");
+  }
+
+
   
   /* Show the options that the user have choiced in the main screen */
   for (item in $window.localStorage) {  
@@ -269,21 +327,11 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
     $window.localStorage[checkName] = checkValue; // Save the meats in localValue. I think that this is not the right way to do that, but it works now.
   };
 
-  $scope.changePageMeats = function() {
-    $ionicViewSwitcher.nextDirection('forward'); // Animation
-    $state.go('meats');
-  };  
 
-  $scope.changePageDrinks = function() {
+  $scope.changePage = function(page) {
     $ionicViewSwitcher.nextDirection('forward'); // Animation
-    $state.go('drinks');
+    $state.go(page);
   };  
-
-  $scope.changePageOthers = function() {
-    $ionicViewSwitcher.nextDirection('forward'); // Animation
-    $state.go('others');
-  };  
-
 
 
   $scope.goBack = function () {
