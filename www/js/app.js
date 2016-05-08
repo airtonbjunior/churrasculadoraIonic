@@ -106,6 +106,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
 app.controller('mainController', function($scope, $state, $stateParams, $ionicHistory, $ionicViewSwitcher, $ionicModal, $window) {
 
 
+  /* Handle the modal screen */
   $ionicModal.fromTemplateUrl('templates/modal-answer.html', {
     
     scope: $scope,
@@ -141,10 +142,10 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
   $scope.$on('modal.removed', function() {
     // Execute action
   });
-
+  /* Handle the modal screen */
 
   
-  $scope.meatList = $scope.drinkList = $scope.otherList = "";
+  $scope.meatList = $scope.drinkList = $scope.otherList = "Nenhuma escolha";
   //$scope.manQuantity = $scope.womanQuantity = $scope.childQuantity = 0; 
   $scope.manQuantity   = $window.localStorage['man'];
   $scope.womanQuantity = $window.localStorage['woman'];
@@ -279,7 +280,7 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
     var reg = new RegExp(/^\d+$/);
 
     if ( !reg.test($scope.manQuantity)  || !reg.test($scope.womanQuantity) || !reg.test($scope.childQuantity)) {
-        alert("só vale números, vivente!!!");
+        alert("só vale números, vivente!");
         return;
     }
 
@@ -308,14 +309,17 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
   /* Show the options that the user have choiced in the main screen */
   for (item in $window.localStorage) {  
     if( item.indexOf("m") != -1 && $window.localStorage[item] == 'true' ) { 
+      $scope.meatList = $scope.meatList.replace("Nenhuma escolha", ""); /* Erase the "None". It's hardcoded now, change this! */
       $scope.meatList += " " + $scope.meats[item[0]].name;
     }
 
     if( item.indexOf("d") != -1 && $window.localStorage[item] == 'true' ) { 
+      $scope.drinkList = $scope.drinkList.replace("Nenhuma escolha", ""); /* Erase the "None". It's hardcoded now, change this! */
       $scope.drinkList += " " + $scope.drinks[item[0]].name;
     }
 
     if( item.indexOf("o") != -1 && $window.localStorage[item] == 'true') { 
+      $scope.otherList = $scope.otherList.replace("Nenhuma escolha", ""); /* Erase the "None". It's hardcoded now, change this! */
       $scope.otherList += " " + $scope.others[item[0]].name;
     }
   }
@@ -337,7 +341,6 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
   $scope.goBack = function () {
     //$ionicHistory.goBack(); // This doesn't work for me! Fix this!
     window.history.back();
-
   };
 
 });

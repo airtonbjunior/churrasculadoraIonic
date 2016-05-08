@@ -1,9 +1,11 @@
-<ion-view view-title="Churrasculadora" cache-view="false">
-  <ion-content class="padding" ng-controller="mainController">
-   
+<ion-view view-title="Churrasculadora" cache-view="false" ng-controller="mainController">
+  <ion-content class="padding">
+
+    <!-- <div class="" align="center"><h1>Quem vai?</h1></div> -->
     <div class="row">
       <div class="col card" align="center">
-        <i class="icon ion-man dark iconPersons"></i><br />Homens
+        <img src="../img/man-kiss.png">
+        <!-- <i class="icon ion-man dark iconPersons"></i><br />Homens -->
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
           <input type="text" placeholder="Quantidade" value='{{ manQuantity }}' ng-model="manQuantity" ng-blur="saveQuantity( manQuantity, 'man');">
@@ -11,7 +13,8 @@
       </div>
       
       <div class="col card" align="center">
-        <i class="icon ion-woman dark iconPersons"></i><br />Mulheres
+        <img src="../img/woman-kiss.png">
+        <!-- <i class="icon ion-woman dark iconPersons"></i><br />Mulheres -->
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
           <input type="text" placeholder="Quantidade" value='{{ womanQuantity }}' ng-model="womanQuantity" ng-blur="saveQuantity( manQuantity, 'woman');">
@@ -19,7 +22,8 @@
       </div>
       
       <div class="col card" align="center">
-        <i class="icon ion-ios-body iconPersonsChild dark iconPersons"></i><br />Crianças
+        <img src="../img/child-kiss.png">
+        <!-- <i class="icon ion-ios-body iconPersonsChild dark iconPersons"></i><br />Crianças -->
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
           <input type="text" placeholder="Quantidade" value='{{ childQuantity }}' ng-model="childQuantity" ng-blur="saveQuantity( manQuantity, 'child');">
@@ -41,22 +45,45 @@
       </button>
     </a> <br /><br />        
     -->
-    <button class="button button-positive button-block" ng-click="changePage('meats')">
-      Escolher Carnes
-    </button>
-    <p> {{ meatList }} </p>
-    <button class="button button-positive button-block" ng-click="changePage('drinks')">
-      Escolher Bebidas
-    </button>
-    <p> {{ drinkList }} </p>
-    <button class="button button-positive button-block" ng-click="changePage('others')">
-      Outros
-    </button> 
-    <p> {{ otherList }} </p>
-    <br />
-    <button class="button button-block button-assertive" ng-click="calcBarbecue(); modal.show();">
-     Calcular Churrasco!
-    </button>
+    <div class="" align="center"><h4>Escolha os itens</h4></div>
+    <div class="row">
+      <div class="col" align="center">
+        <button class="button button-positive button-block" ng-click="changePage('meats')">
+          Carnes
+        </button>
+      </div>   
+      <div class="col" align="center">
+        <button class="button button-positive button-block" ng-click="changePage('drinks')">
+          Bebidas
+        </button>
+      </div>
+      <div class="col" align="center">
+        <button class="button button-positive button-block" ng-click="changePage('others')">
+          Outros
+        </button> 
+      </div>
+      <br />
 
+    </div>
+    <div class="row">
+      <div class="col" align="center">
+        <p class="itens-choosed"> {{ meatList }} </p>
+      </div>
+      <div class="col" align="center">
+        <p class="itens-choosed"> {{ drinkList }} </p>
+      </div>
+      <div class="col" align="center">
+        <p class="itens-choosed"> {{ otherList }} </p>
+      </div>
+    </div>
   </ion-content>
+
+  <ion-footer-bar class="bar-assertive tabs">
+    <div class="tab-item tab-item-active">
+      <button class="button textFooter" ng-click="calcBarbecue(); modal.show();" value="eonsod">
+        <div class="textFooter"> Calcular Churrasco! </div>
+      </button>
+    </div>
+  </ion-footer-bar>
+
 </ion-view>

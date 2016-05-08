@@ -14,3 +14,48 @@
   right: 15px;
   height: 100%;
 }
+
+.link {
+    color: #116262;
+    font-weight: bold;
+}
+
+h1 { color: #111; font-family: 'Open Sans Condensed', sans-serif; font-size: 44px; font-weight: 700; line-height: 64px; margin: 0 0 0; padding: 0px 0px; text-align: center; text-transform: uppercase; }
+
+
+h4 {
+    color: #116262;
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+h4:first-child {
+    border-top: none;
+    padding-top: initial;
+}
+
+.textFooter {
+	color: #fff;
+	font-family: 'Lato', sans-serif; 
+	font-size: 14px; 
+	font-weight: bold; 
+	line-height: 12px; 
+	/*letter-spacing: 1px;*/
+	/*margin: 0 0 30px; */
+	/*padding: 10px 15px 8px;*/
+	/*text-transform: uppercase; */
+}
+
+.title-bordered {
+    border-top: solid 2px #bbb;
+    padding-top: 30px;
+}
+
+p {
+    color: #555;
+    margin: 0 0 25px;
+}
+
+p.itens-choosed {
+	background: #fe921f; color: #ffffff; display: inline-block; font-family: 'Lato', sans-serif; font-size: 12px; font-weight: bold; line-height: 12px; letter-spacing: 1px; margin: 0 0 30px; padding: 10px 15px 8px; text-transform: uppercase;
+}
