@@ -43,7 +43,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
   })
 
   .state('others', {
-    url: '/meats',
+    url: '/others',
     templateUrl: 'templates/others.html'
   })
 

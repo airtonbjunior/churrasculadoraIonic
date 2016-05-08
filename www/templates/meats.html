@@ -1,8 +1,7 @@
-<ion-view view-title="Carnes">
+<ion-view view-title="Escolha suas carnes">
  	<ion-content class="padding" ng-controller="mainController">
- 		<button class="button icon ion-ios-arrow-back" ng-click="goBack()" nav-direction="back">OK!</button>
 	 	<ion-list clas="products meats">
-	      <div class="item item-divider">Carnes</div>
+	      <div class="item item-divider" align="center">Carnes</div>
 	      <ion-checkbox ng-repeat="meat in meats track by $index" ng-model="meat.checked" ng-checked="{{getCheckMeats($index)}}" ng-click="updateMeatsLocalStorage($index)"> {{ meat.name }} <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
 	    </ion-list>
 	    <button class="button button-block button-assertive" ng-click="goBack()" nav-direction="back">OK</button>
