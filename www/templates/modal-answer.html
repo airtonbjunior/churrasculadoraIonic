@@ -3,18 +3,20 @@
     <h1 class="title">Churrasco</h1>
     <button class="button button-clear button-primary" ng-click="modal.hide()">Fechar</button>
   </ion-header-bar>
-  <ion-content class="padding">
-    <div class="list">
-      <label class="item item-input">
-        <span class="input-label" ng-repeat="(key, meat) in meatResult track by $index"> {{ key }} {{ meat }} </span>
-      </label>
-      <label class="item item-input">
-        <span class="input-label" ng-repeat="(key, drink) in drinkResult track by $index"> {{ key }} {{ drink }} </span>
-      </label>
-      <label class="item item-input">
-        <span class="input-label" ng-repeat="(key, other) in otherResult track by $index"> {{ key }} {{ other }} </span>
-      </label>
-      <button class="button button-full button-positive" ng-click="saveBarbecue()">Salvar Cálculo</button>
-    </div>
+  
+  <ion-content class="">
+    <ion-list class="meats">
+      <div class="item item-divider" align="center">Carnes</div>
+      <item class="item item-icon-left" ng-repeat="(key, meat) in meatResult track by $index"> <i class="icon ion-fork"></i> {{ key }} {{ meat | number : 0 }} </item>
+    </ion-list>
+    <ion-list class="drinks">
+      <div class="item item-divider" align="center">Bebidas</div>
+      <item class="item item-icon-left" ng-repeat="(key, drink) in drinkResult track by $index"> <i class="icon ion-ios-pint"></i> {{ key }} {{ drink | number : 0 }} </item>
+    </ion-list>
+    <ion-list class="meats">
+      <div class="item item-divider" align="center">Outros</div>
+      <item class="item item-icon-left" ng-repeat="(key, other) in otherResult track by $index"> <i class="icon ion-fork"></i> {{ key }} {{ other | number : 0 }} </item>
+    <button class="button button-full button-positive" ng-click="saveBarbecue()">Salvar Cálculo</button>
   </ion-content>
+
 </ion-modal-view>

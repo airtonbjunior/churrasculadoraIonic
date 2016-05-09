@@ -313,6 +313,10 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
 
     /* Split the total quantity to the itens choosed */
     for (item in drinksChoosed) {
+      if (drinksChoosed[item].trim().toUpperCase() == "NENHUMA ESCOLHA") {
+        drinksNeededObj[drinksChoosed[item].trim()] = ".";
+        break;
+      }
       drinksNeededObj[drinksChoosed[item].trim()] = drinkQuantityNeeded / drinksChoosed.length;
     }
 
@@ -322,10 +326,18 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
     }
 
     for (item in meatsChoosed) {
+      if (meatsChoosed[item].trim().toUpperCase() == "NENHUMA ESCOLHA") {
+        meatsNeededObj[meatsChoosed[item].trim()] = ".";
+        break;
+      }
       meatsNeededObj[meatsChoosed[item].trim()] = meatQuantityNeeded / meatsChoosed.length;
     }
 
     for (item in othersChoosed) {
+      if (othersChoosed[item].trim().toUpperCase() == "NENHUMA ESCOLHA") {
+        othersNeededObj[othersChoosed[item].trim()] = ".";
+        break;
+      }
       //othersNeeded[othersChoosed[item].trim()] = otherQuantityNeeded / othersChoosed.length;
     }
 
