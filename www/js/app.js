@@ -344,9 +344,6 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
     $scope.drinkResult = drinksNeededObj;
     $scope.meatResult  = meatsNeededObj;
     $scope.otherResult = othersNeededObj;
-
-    console.log (drinksNeededObj);
-    console.log (meatsNeededObj);
   };
   /* ----------------- */
   /* End Main function */
@@ -359,7 +356,8 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
   /* Save the barbecue in the localStorage */
   /* ------------------------------------- */
   $scope.saveBarbecue = function () {
-    alert("vou salvar!");
+    //alert("Ok!");
+
   }
 
 
