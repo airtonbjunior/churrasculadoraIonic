@@ -2,7 +2,7 @@
  	<ion-content class="padding" ng-controller="mainController">
 	 	<ion-list clas="products meats">
 	      <div class="item item-divider" align="center">Carnes</div>
-	      <ion-checkbox ng-repeat="meat in meats track by $index" ng-model="meat.checked" ng-checked="{{getCheckMeats($index)}}" ng-click="updateMeatsLocalStorage($index)"> {{ meat.name }} <img class="item-checkbox-img" src="http://placehold.it/350x150"></ion-checkbox>
+	      <ion-checkbox ng-repeat="meat in meats track by $index" ng-model="meat.checked" ng-checked="{{getCheckMeats($index)}}" ng-click="updateMeatsLocalStorage($index)"> {{ meat.name }} <img class="item-checkbox-img" src="img/meats/{{ meat.name }}.png"></ion-checkbox>
 	    </ion-list>
 	    <button class="button button-block button-assertive" ng-click="goBack()" nav-direction="back">OK</button>
 	</ion-content>
