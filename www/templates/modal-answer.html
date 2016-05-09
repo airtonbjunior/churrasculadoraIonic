@@ -6,13 +6,13 @@
   <ion-content class="padding">
     <div class="list">
       <label class="item item-input">
-        <span class="input-label">XYZ de Carne</span>
+        <span class="input-label" ng-repeat="(key, meat) in meatResult track by $index"> {{ key }} {{ meat }} </span>
       </label>
       <label class="item item-input">
-        <span class="input-label">XYZ de Bebidas</span>
+        <span class="input-label" ng-repeat="(key, drink) in drinkResult track by $index"> {{ key }} {{ drink }} </span>
       </label>
       <label class="item item-input">
-        <span class="input-label">XYZ de Outros</span>
+        <span class="input-label" ng-repeat="(key, other) in otherResult track by $index"> {{ key }} {{ other }} </span>
       </label>
       <button class="button button-full button-positive" ng-click="saveBarbecue()">Salvar Cálculo</button>
     </div>

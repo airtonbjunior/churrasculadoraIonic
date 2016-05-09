@@ -272,9 +272,36 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
 
 
 
+  var quantityChoosed = function (type) {
+    for (item in $window.localStorage) {
 
+    };
+    return 0;
+  }
+
+  
+
+  /* ------------- */
   /* Main function */
+  /* ------------- */
   $scope.calcBarbecue = function () {
+
+    /* This way to define the variables improve the code readability */
+    /* Get the itens choosed */
+    var meatsChoosed  = $scope.meatList.split(",");
+    var drinksChoosed = $scope.drinkList.split(",");
+    var othersChoosed = $scope.otherList.split(",");
+
+    /* Variables to store the result */
+    var drinksNeededObj = {}; // I'm testing the 2 ways 
+    var meatsNeededObj  = {};
+    var othersNeededObj = {};
+
+    /* Calculate the quantity needed - see table of quantity (hardcoded yet) */
+    var meatQuantityNeeded        = ($scope.manQuantity * 450)   + ($scope.womanQuantity * 400)   + ($scope.childQuantity * 200);
+    var drinkQuantityNeeded       = ($scope.manQuantity * 1500)  + ($scope.womanQuantity * 1000)  + ($scope.childQuantity * 500);
+    var garlicBreadQuantityNeeded = parseInt($scope.manQuantity) + parseInt($scope.womanQuantity) + parseInt($scope.childQuantity);
+    
 
     /* Validate if the users put a number in the quantity field */
     var reg = new RegExp(/^\d+$/);
@@ -284,22 +311,41 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
         return;
     }
 
-    var meatQuantityNeeded        = ($scope.manQuantity * 450) + ($scope.womanQuantity * 400) + ($scope.childQuantity * 200);
-    var drinkQuantityNeeded       = ($scope.manQuantity * 1500) + ($scope.womanQuantity * 1000) + ($scope.childQuantity * 500);
-    var garlicBreadQuantityNeeded = parseInt($scope.manQuantity) + parseInt($scope.womanQuantity) + parseInt($scope.childQuantity);
+    /* Split the total quantity to the itens choosed */
+    for (item in drinksChoosed) {
+      drinksNeededObj[drinksChoosed[item].trim()] = drinkQuantityNeeded / drinksChoosed.length;
+    }
 
+    // Here, I'm working directly with the localStorage. Change this to work with $scope variables.
+    if ($window.localStorage['man'] > 0 && $window.localStorage['1d'] == 'true') { 
+      drinksNeededObj['Cerveja'] = parseInt($window.localStorage['man']) * 1500; /* The beer always follow the man quantity */
+    }
 
-    /* HERE, I NEED PUT THE CORE - SPLIT THE TOTAL TO THE MEATS, DRINKS AND OTHERS! */
-    /* SEARCH THE BETTER WAY TO DO THIS */
-    /* SEARCH ON THE INTERNET SOME ALGORITHM TO HELP THIS */
+    for (item in meatsChoosed) {
+      meatsNeededObj[meatsChoosed[item].trim()] = meatQuantityNeeded / meatsChoosed.length;
+    }
 
+    for (item in othersChoosed) {
+      //othersNeeded[othersChoosed[item].trim()] = otherQuantityNeeded / othersChoosed.length;
+    }
 
+    $scope.drinkResult = drinksNeededObj;
+    $scope.meatResult  = meatsNeededObj;
+    $scope.otherResult = othersNeededObj;
 
-    alert($scope.manQuantity + " | " + $scope.womanQuantity + " | " + $scope.childQuantity + " - " + meatQuantityNeeded + "g carne | " + drinkQuantityNeeded + "ml bebida | " + garlicBreadQuantityNeeded);
+    console.log (drinksNeededObj);
+    console.log (meatsNeededObj);
   };
+  /* ----------------- */
+  /* End Main function */
+  /* ----------------- */
 
 
+
+
+  /* ------------------------------------- */
   /* Save the barbecue in the localStorage */
+  /* ------------------------------------- */
   $scope.saveBarbecue = function () {
     alert("vou salvar!");
   }
@@ -310,20 +356,22 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
   for (item in $window.localStorage) {  
     if( item.indexOf("m") != -1 && $window.localStorage[item] == 'true' ) { 
       $scope.meatList = $scope.meatList.replace("Nenhuma escolha", ""); /* Erase the "None". It's hardcoded now, change this! */
-      $scope.meatList += " " + $scope.meats[item[0]].name;
+      $scope.meatList += ", " + $scope.meats[item[0]].name;
     }
 
     if( item.indexOf("d") != -1 && $window.localStorage[item] == 'true' ) { 
       $scope.drinkList = $scope.drinkList.replace("Nenhuma escolha", ""); /* Erase the "None". It's hardcoded now, change this! */
-      $scope.drinkList += " " + $scope.drinks[item[0]].name;
+      $scope.drinkList += ", " + $scope.drinks[item[0]].name;
     }
 
     if( item.indexOf("o") != -1 && $window.localStorage[item] == 'true') { 
       $scope.otherList = $scope.otherList.replace("Nenhuma escolha", ""); /* Erase the "None". It's hardcoded now, change this! */
-      $scope.otherList += " " + $scope.others[item[0]].name;
+      $scope.otherList += ", " + $scope.others[item[0]].name;
     }
   }
-
+  $scope.meatList  = $scope.meatList.replace(", ", "");
+  $scope.drinkList = $scope.drinkList.replace(", ", "");
+  $scope.otherList = $scope.otherList.replace(", ", "");
 
 
   $scope.doIfChecked = function (checkValue, checkName) {
