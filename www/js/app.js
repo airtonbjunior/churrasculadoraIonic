@@ -261,7 +261,7 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
 
   $scope.saveQuantity = function (quantity, who) {
 
-    if (quantity == "") { /* think what to do if the user erase the field. I think that is better fill with "0"*/ }
+    if (quantity == "") { $window.localStorage.setItem(who, 0); /* think what to do if the user erase the field. I think that is better fill with "0"*/ }
 
     $window.localStorage.setItem(who, quantity);
 

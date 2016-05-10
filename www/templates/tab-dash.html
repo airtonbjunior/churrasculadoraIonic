@@ -17,7 +17,7 @@
         <!-- <i class="icon ion-woman dark iconPersons"></i><br />Mulheres -->
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
-          <input type="text" placeholder="Quantidade" value='{{ womanQuantity }}' ng-model="womanQuantity" ng-blur="saveQuantity( manQuantity, 'woman');">
+          <input type="text" placeholder="Quantidade" value='{{ womanQuantity }}' ng-model="womanQuantity" ng-blur="saveQuantity( womanQuantity, 'woman');">
         </label>      
       </div>
       
@@ -26,7 +26,7 @@
         <!-- <i class="icon ion-ios-body iconPersonsChild dark iconPersons"></i><br />Crianças -->
         <label class="item item-input">
           <i class="icon ion-ios-grid-view-outline placeholder-icon"></i>
-          <input type="text" placeholder="Quantidade" value='{{ childQuantity }}' ng-model="childQuantity" ng-blur="saveQuantity( manQuantity, 'child');">
+          <input type="text" placeholder="Quantidade" value='{{ childQuantity }}' ng-model="childQuantity" ng-blur="saveQuantity( childQuantity, 'child');">
         </label>      
       </div>
     </div>
