@@ -156,7 +156,7 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
   /* I find a nice example here: http://codepen.io/DeutschMark/pen/oXNBYQ */
   /* I'm following this example and it works fine! */
   $scope.meats = [{
-        name: "Contra Filé",
+        name: "Contra File",
         id: 1
     }, {
         name: "Coxa de Frango",
@@ -177,10 +177,10 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
         name: "Cupim",
         id: 7
     }, {
-        name: "Linguiça",
+        name: "Linguica",
         id: 8
     }, {
-        name: "Coração",
+        name: "Coracao",
         id: 9
     }, ];
 
@@ -195,33 +195,30 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
         name: "Cerveja",
         id: 2
     }, {
-        name: "Cachaça",
+        name: "Cachaca",
         id: 3
     }, {
         name: "Suco",
         id: 4
     }, {
-        name: "Água",
+        name: "Agua",
         id: 5
     }, ];
 
 
 
     $scope.others = [{
-        name: "Other 1",
+        name: "Pao",
         id: 1
     }, {
-        name: "Other 2",
+        name: "Arroz",
         id: 2
     }, {
-        name: "Other 3",
+        name: "Salada",
         id: 3
     }, {
-        name: "Other 4",
+        name: "Maionese",
         id: 4
-    }, {
-        name: "Other 5",
-        id: 5
     }, ];
 
 
@@ -297,10 +294,15 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
     var meatsNeededObj  = {};
     var othersNeededObj = {};
 
+    /* Double verification */
+    $scope.manQuantity   = $window.localStorage['man'];
+    $scope.womanQuantity = $window.localStorage['woman'];
+    $scope.childQuantity = $window.localStorage['child'];
+
     /* Calculate the quantity needed - see table of quantity (hardcoded yet) */
-    var meatQuantityNeeded        = ($scope.manQuantity * 450)   + ($scope.womanQuantity * 400)   + ($scope.childQuantity * 200);
-    var drinkQuantityNeeded       = ($scope.manQuantity * 1500)  + ($scope.womanQuantity * 1000)  + ($scope.childQuantity * 500);
-    var garlicBreadQuantityNeeded = parseInt($scope.manQuantity) + parseInt($scope.womanQuantity) + parseInt($scope.childQuantity);
+    var meatQuantityNeeded  = ($scope.manQuantity * 450)   + ($scope.womanQuantity * 400)   + ($scope.childQuantity * 200);
+    var drinkQuantityNeeded = ($scope.manQuantity * 1500)  + ($scope.womanQuantity * 1000)  + ($scope.childQuantity * 500);
+    var otherQuantityNeeded = parseInt($scope.manQuantity) + parseInt($scope.womanQuantity) + parseInt($scope.childQuantity);
     
 
     /* Validate if the users put a number in the quantity field */
@@ -338,18 +340,27 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
         othersNeededObj[othersChoosed[item].trim()] = ".";
         break;
       }
-      //othersNeeded[othersChoosed[item].trim()] = otherQuantityNeeded / othersChoosed.length;
+      othersNeededObj[othersChoosed[item].trim()] = otherQuantityNeeded / othersChoosed.length;
     }
 
     $scope.drinkResult = drinksNeededObj;
     $scope.meatResult  = meatsNeededObj;
     $scope.otherResult = othersNeededObj;
+
+    $scope.modal.show();
   };
   /* ----------------- */
   /* End Main function */
   /* ----------------- */
 
 
+  /* ---------------------- */
+  /* Clean the localStorage */
+  /* ---------------------- */
+  $scope.newCalc = function () {
+    $window.localStorage.clear();
+    $window.location.reload();
+  }
 
 
   /* ------------------------------------- */
@@ -357,7 +368,7 @@ app.controller('mainController', function($scope, $state, $stateParams, $ionicHi
   /* ------------------------------------- */
   $scope.saveBarbecue = function () {
     //alert("Ok!");
-
+    // DEPRECATED
   }
 
 
