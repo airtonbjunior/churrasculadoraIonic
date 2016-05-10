@@ -16,7 +16,7 @@
     <ion-list class="meats">
       <div class="item item-divider" align="center">Outros</div>
       <item class="item item-icon-left" ng-repeat="(key, other) in otherResult track by $index"> <i class="icon ion-fork"></i> {{ key }} {{ other | number : 0 }} </item>
-    <button class="button button-full button-positive" ng-click="saveBarbecue()">OK!</button>
+    <button class="button button-full button-positive" ng-click="newCalc(); modal.hide();">Novo Cálculo</button>
   </ion-content>
 
 </ion-modal-view>
